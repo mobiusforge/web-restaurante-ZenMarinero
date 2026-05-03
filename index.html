@@ -1,134 +1,665 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zen Marinero</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zen Marinero | Taberna marinera en La Graciosa</title>
+  <meta name="description" content="Zen Marinero, taberna marinera en Caleta del Sebo, La Graciosa. Cocina de barrio, producto local y alma contemporánea." />
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    color: #2c2c2c;
-    background: #f5f2ed;
-}
+  <style>
+    :root {
+      --cream: #f3ece1;
+      --paper: #fbfaf7;
+      --dark: #1c1b1a;
+      --text: #363330;
+      --muted: #77716d;
+      --wine: #873743;
+      --wine-dark: #6f2934;
+      --line: rgba(54, 51, 48, 0.16);
+    }
 
-h1, h2 {
-    font-family: 'Playfair Display', serif;
-}
+    * { box-sizing: border-box; }
 
-.hero {
-    height: 100vh;
-    background: url('https://images.unsplash.com/photo-1555992336-03a23c6d02a7') center/cover;
-    display: flex;
-    align-items: center;
-    padding: 80px;
-    color: white;
-}
+    html { scroll-behavior: smooth; }
 
-.hero h1 {
-    font-size: 70px;
-    max-width: 600px;
-}
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.7;
+    }
 
-.section {
-    padding: 80px;
-}
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
-.split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-}
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 44px;
+      background: rgba(251, 250, 247, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
 
-.button {
-    background: #7a2d2d;
-    color: white;
-    padding: 14px 24px;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 20px;
-}
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      letter-spacing: -0.04em;
+      color: var(--dark);
+      white-space: nowrap;
+    }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
+    .logo em { color: var(--wine); font-style: italic; }
 
-.gallery img {
-    width: 100%;
-}
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #55514d;
+    }
 
-.footer {
-    background: #111;
-    color: white;
-    padding: 60px;
-}
-</style>
+    .menu a:hover { color: var(--wine); }
 
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 28px;
+      border: 1px solid var(--wine);
+      background: var(--wine);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover { background: var(--wine-dark); transform: translateY(-1px); }
+
+    .btn.outline {
+      background: transparent;
+      color: var(--text);
+      border-color: #3d3935;
+    }
+
+    .btn.outline:hover {
+      background: var(--dark);
+      color: white;
+    }
+
+    .icon-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,.35);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 150px 44px 72px;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.66), rgba(0,0,0,.25), rgba(0,0,0,.15)),
+        url("https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=2200&q=85") center/cover;
+    }
+
+    .hero-content { max-width: 820px; position: relative; z-index: 2; }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--wine);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .eyebrow.white { color: rgba(255,255,255,.88); }
+
+    .eyebrow::before {
+      content: "";
+      width: 66px;
+      height: 1px;
+      background: currentColor;
+      opacity: .8;
+    }
+
+    h1, h2, h3 {
+      font-family: "Playfair Display", serif;
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--dark);
+      letter-spacing: -0.055em;
+      margin: 0;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: clamp(58px, 8vw, 132px);
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    h1 em, h2 em { font-style: italic; }
+
+    .hero p {
+      max-width: 580px;
+      font-size: 18px;
+      color: rgba(255,255,255,.86);
+      margin: 0 0 34px;
+    }
+
+    .section {
+      padding: 118px 44px;
+      background: var(--paper);
+    }
+
+    .section.alt { background: var(--cream); }
+
+    .container {
+      max-width: 1460px;
+      margin: 0 auto;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .two-col.equal { grid-template-columns: 1fr 1fr; align-items: center; }
+
+    .title-xl {
+      font-size: clamp(56px, 5.5vw, 96px);
+    }
+
+    .lead {
+      font-size: clamp(28px, 3.1vw, 54px);
+      font-family: "Playfair Display", serif;
+      line-height: 1.25;
+      color: var(--dark);
+      letter-spacing: -0.045em;
+      margin-bottom: 32px;
+    }
+
+    .copy {
+      font-size: 20px;
+      color: #65605b;
+      max-width: 760px;
+    }
+
+    .copy p { margin: 0 0 24px; }
+
+    .image-card {
+      aspect-ratio: 1 / 1.06;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .stats {
+      display: flex;
+      gap: 52px;
+      margin-top: 70px;
+    }
+
+    .stat {
+      min-width: 140px;
+      border-right: 1px solid var(--line);
+      padding-right: 48px;
+    }
+
+    .stat:last-child { border-right: 0; }
+
+    .stat strong {
+      display: block;
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      color: var(--wine);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat span {
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      font-size: 13px;
+      color: #9c9690;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 26px;
+      margin-top: 54px;
+    }
+
+    .gallery-side {
+      display: grid;
+      gap: 26px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 280px;
+    }
+
+    .gallery-grid .large { min-height: 680px; }
+
+    .wide-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      margin-top: 26px;
+    }
+
+    .wide-gallery img {
+      height: 320px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .info-list {
+      margin-top: 42px;
+      display: grid;
+      gap: 25px;
+    }
+
+    .info-item .label {
+      display: block;
+      color: #a19a94;
+      font-size: 13px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .info-item p { margin: 0; color: #5c5752; }
+
+    .hours {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      max-width: 280px;
+      color: #68625d;
+      font-size: 15px;
+    }
+
+    .map {
+      width: 100%;
+      height: 620px;
+      border: 0;
+      filter: saturate(.85);
+    }
+
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .job-section {
+      background: #292625;
+      color: white;
+    }
+
+    .job-section h2 { color: white; }
+    .job-section .copy { color: #c8c1bc; }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,.24);
+      padding: 18px 0;
+      background: transparent;
+      color: white;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea { min-height: 130px; grid-column: span 2; resize: vertical; }
+
+    input::placeholder, textarea::placeholder {
+      color: #aaa3a0;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: 13px;
+    }
+
+    .form-footer {
+      grid-column: span 2;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .footer {
+      position: relative;
+      overflow: hidden;
+      background: #171615;
+      color: white;
+      padding: 86px 44px 52px;
+    }
+
+    .footer::before {
+      content: "Zen Marinero";
+      position: absolute;
+      left: 22px;
+      bottom: -52px;
+      font-family: "Playfair Display", serif;
+      font-size: 190px;
+      color: rgba(255,255,255,.035);
+      white-space: nowrap;
+      letter-spacing: -0.06em;
+    }
+
+    .footer-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.2fr .6fr .6fr;
+      gap: 80px;
+    }
+
+    .footer h3 {
+      color: white;
+      font-size: 34px;
+    }
+
+    .footer h3 em { color: #d4a0a8; font-style: italic; }
+
+    .footer-title {
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: #aaa3a0;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .footer p { color: #c8c1bc; margin: 0 0 14px; }
+
+    .legal {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,.1);
+      margin-top: 74px;
+      padding-top: 34px;
+      color: #aaa3a0;
+      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 60;
+      width: 62px;
+      height: 62px;
+      border-radius: 999px;
+      background: #25d366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      box-shadow: 0 16px 40px rgba(0,0,0,.25);
+    }
+
+    @media (max-width: 1100px) {
+      .menu { display: none; }
+      .nav { padding: 0 22px; }
+      .hero { padding: 130px 24px 60px; }
+      .section { padding: 84px 24px; }
+      .two-col, .two-col.equal, .visit-grid, .footer-grid { grid-template-columns: 1fr; gap: 48px; }
+      .gallery-grid, .wide-gallery { grid-template-columns: 1fr; }
+      .gallery-grid .large { min-height: 420px; }
+      .map { height: 420px; }
+    }
+
+    @media (max-width: 720px) {
+      .nav-actions .outline, .nav-actions .icon-btn { display: none; }
+      .logo { font-size: 25px; }
+      .hero h1 { font-size: 56px; }
+      .title-xl { font-size: 50px; }
+      .lead { font-size: 34px; }
+      .stats { flex-direction: column; gap: 24px; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+      form { grid-template-columns: 1fr; }
+      textarea, .form-footer { grid-column: span 1; }
+      .footer::before { font-size: 88px; bottom: -20px; }
+      .btn { width: 100%; }
+    }
+  </style>
 </head>
 
 <body>
-
-<!-- HERO -->
-<section class="hero">
-    <div>
-        <h1>Cocina de barrio con alma contemporánea.</h1>
-        <a href="#" class="button">Reservar mesa</a>
+  <header class="nav">
+    <a href="#inicio" class="logo">Zen <em>Marinero</em></a>
+    <nav class="menu">
+      <a href="#somos">Somos</a>
+      <a href="#carta">Carta</a>
+      <a href="#historia">Historia</a>
+      <a href="#galeria">Galería</a>
+      <a href="#visitanos">Visítanos</a>
+      <a href="#empleo">Trabaja con nosotros</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="icon-btn" href="https://instagram.com/zenmarinero" target="_blank" aria-label="Instagram">◎</a>
+      <a class="btn outline" href="#carta">Ver carta</a>
+      <a class="btn" href="https://wa.me/34622442301" target="_blank">Reservar mesa</a>
     </div>
-</section>
+  </header>
 
-<!-- SOMOS -->
-<section class="section split">
-    <div>
-        <h2>Un restaurante de barrio.</h2>
-    </div>
-    <div>
-        <p>En Caleta del Sebo, donde el océano manda y el reloj se olvida...</p>
-    </div>
-</section>
+  <main>
+    <section id="inicio" class="hero">
+      <div class="hero-content">
+        <div class="eyebrow white">Caleta del Sebo · La Graciosa</div>
+        <h1>Cocina de barrio con <em>alma</em> contemporánea.</h1>
+        <p>Una taberna marinera en el corazón de La Graciosa. Producto del Atlántico, mercado diario y las recetas de siempre, contadas de nuevo.</p>
+        <div class="contact-buttons">
+          <a class="btn" href="https://wa.me/34622442301" target="_blank">Reservar mesa</a>
+          <a class="btn outline" style="color:white;border-color:white" href="#carta">Ver carta</a>
+        </div>
+      </div>
+    </section>
 
-<!-- CARTA -->
-<section class="section split">
-    <img src="https://images.unsplash.com/photo-1544025162-d76694265947">
-    <div>
-        <h2>Cocina de mercado, producto local, temporada.</h2>
-        <p>Nuestra carta cambia al ritmo del muelle...</p>
-        <a href="#" class="button">Ver carta</a>
-    </div>
-</section>
+    <section id="somos" class="section">
+      <div class="container two-col">
+        <div>
+          <div class="eyebrow">Somos</div>
+          <h2 class="title-xl">Un restaurante de <em>barrio</em>.</h2>
+        </div>
+        <div class="copy">
+          <p class="lead">En Caleta del Sebo, donde el océano manda y el reloj se olvida, abrimos cada día con las manos llenas de mar y la misma ilusión del primer servicio.</p>
+          <p>No somos un restaurante cualquiera: somos el bar al que se asoma el vecino, la mesa larga de los domingos y el refugio del viajero que llegó buscando algo distinto.</p>
+          <p>Aquí no hay modas: hay memoria, cariño y un punto de sal. Porque la cocina de barrio no se inventa — se hereda, se respeta y, si uno quiere, se reinventa con alma.</p>
+        </div>
+      </div>
+    </section>
 
-<!-- GALERÍA -->
-<section class="section">
-    <h2>Un instante en Zen Marinero</h2>
-    <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
-        <img src="https://images.unsplash.com/photo-1499028344343-cd173ffc68a9">
-    </div>
-</section>
+    <section id="carta" class="section alt">
+      <div class="container two-col equal">
+        <img class="image-card" src="https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?auto=format&fit=crop&w=1400&q=85" alt="Plato marinero de Zen Marinero">
+        <div>
+          <div class="eyebrow">La carta</div>
+          <h2 class="title-xl">Cocina de <em>mercado</em>, producto local, temporada.</h2>
+          <div class="copy">
+            <p>Nuestra carta cambia al ritmo del muelle. Lo que hoy está en la mesa, ayer nadaba: mero, vieja, sama, pulpo. Papas arrugadas con mojo del abuelo, gofio escaldado y quesos de cabra de las medianías.</p>
+            <p>Pocas recetas, mucha atención. Una selección corta de vinos canarios y de la península, y un postre que siempre pedirás dos veces.</p>
+          </div>
+          <a class="btn" href="#" target="_blank">Ver carta completa (PDF)</a>
+        </div>
+      </div>
+    </section>
 
-<!-- CONTACTO -->
-<section class="section split">
-    <div>
-        <h2>Frente al mar, te esperamos.</h2>
-        <p>C. García Escámez, 14</p>
+    <section id="historia" class="section">
+      <div class="container two-col">
+        <div>
+          <div class="eyebrow">Historia</div>
+        </div>
+        <div>
+          <h2 class="title-xl">Un pequeño local, una <em>gran familia</em>.</h2>
+          <div class="copy" style="columns:2; column-gap:60px; margin-top:34px;">
+            <p>Zen Marinero nació en una casa baja de Caleta del Sebo, frente al mar que lo cambia todo. Lo empezamos con más sueños que sillas, convencidos de que La Graciosa merecía un sitio donde el producto hablase solo.</p>
+            <p>Con los años hemos aprendido que este oficio no va de rapidez, sino de honestidad. De mirar a los ojos al pescador, al campesino, al comensal. Hoy seguimos en la misma esquina, con la misma plantilla pequeña y el mismo empeño: cocinar como si fuera para casa.</p>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>2014</strong><span>Primer servicio</span></div>
+            <div class="stat"><strong>0</strong><span>Km al muelle</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="galeria" class="section alt">
+      <div class="container">
+        <div class="eyebrow">Galería</div>
+        <h2 class="title-xl">Un instante en Zen <em>Marinero</em>.</h2>
+        <div class="gallery-grid">
+          <img class="large" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1400&q=85" alt="Plato de temporada">
+          <div class="gallery-side">
+            <img src="https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1200&q=85" alt="Plato servido">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=85" alt="Interior de taberna">
+          </div>
+        </div>
+        <div class="wide-gallery">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85" alt="Costa de La Graciosa">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=85" alt="Mar Atlántico">
+        </div>
+      </div>
+    </section>
+
+    <section id="visitanos" class="section">
+      <div class="container visit-grid">
+        <div>
+          <div class="eyebrow">Visítanos</div>
+          <h2 class="title-xl">Frente al mar, <em>te esperamos</em>.</h2>
+          <div class="info-list">
+            <div class="info-item">
+              <span class="label">Dirección</span>
+              <p>C. García Escámez, 14, 35540 Caleta del Sebo, Las Palmas</p>
+            </div>
+            <div class="info-item">
+              <span class="label">Teléfono</span>
+              <p>+34 622 442 301</p>
+            </div>
+            <div class="info-item">
+              <span class="label">Horario</span>
+              <div class="hours"><span>Lunes</span><span>08:00 – 18:00</span><span>Martes</span><span>08:00 – 18:00</span><span>Miércoles</span><span>08:00 – 18:00</span><span>Jueves</span><span>08:00 – 18:00</span><span>Viernes</span><span>08:00 – 18:00</span><span>Sábado</span><span>08:00 – 18:00</span><span>Domingo</span><span>08:00 – 18:00</span></div>
+            </div>
+          </div>
+          <div class="contact-buttons">
+            <a class="btn" href="https://wa.me/34622442301" target="_blank">WhatsApp</a>
+            <a class="btn outline" href="https://instagram.com/zenmarinero" target="_blank">Instagram</a>
+            <a class="btn outline" href="mailto:hola@zenmarinero.com">Escríbenos</a>
+          </div>
+        </div>
+        <iframe class="map" title="Mapa Zen Marinero" src="https://maps.google.com/maps?q=C.%20Garc%C3%ADa%20Esc%C3%A1mez%2C%2014%2C%20Caleta%20del%20Sebo&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+      </div>
+    </section>
+
+    <section id="empleo" class="section job-section">
+      <div class="container two-col equal">
+        <div>
+          <div class="eyebrow">Empleo</div>
+          <h2 class="title-xl">Trabaja con <em>nosotros</em>.</h2>
+          <div class="copy">
+            <p>Siempre estamos atentos a quienes aman este oficio. Si sientes que tu sitio está en sala, cocina o bar — déjanos tu CV y unas líneas sobre ti.</p>
+          </div>
+        </div>
+        <form action="mailto:hola@zenmarinero.com" method="post" enctype="text/plain">
+          <input type="text" name="nombre" placeholder="Nombre" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="telefono" placeholder="Teléfono">
+          <input type="text" name="puesto" placeholder="Puesto de interés">
+          <textarea name="mensaje" placeholder="Cuéntanos sobre ti"></textarea>
+          <div class="form-footer">
+            <span style="color:#c8c1bc">Adjuntar CV: enviar por email tras contactar.</span>
+            <button class="btn" type="submit">Enviar candidatura</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Zen <em>Marinero</em></h3>
+        <p>Taberna marinera en Caleta del Sebo, La Graciosa. Cocina de barrio con alma contemporánea.</p>
+      </div>
+      <div>
+        <div class="footer-title">Contacto</div>
+        <p>C. García Escámez, 14, 35540 Caleta del Sebo, Las Palmas</p>
         <p>+34 622 442 301</p>
+        <p>hola@zenmarinero.com</p>
+      </div>
+      <div>
+        <div class="footer-title">Síguenos</div>
+        <p><a href="https://instagram.com/zenmarinero" target="_blank">@zenmarinero</a></p>
+      </div>
     </div>
-    <iframe 
-        src="https://maps.google.com/maps?q=caleta%20del%20sebo&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-        width="100%" height="400">
-    </iframe>
-</section>
+    <div class="container legal">
+      <span>© 2026 Zen Marinero. Todos los derechos reservados.</span>
+      <span>Aviso legal · Política de privacidad · Cookies</span>
+    </div>
+  </footer>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <p>© Zen Marinero</p>
-</footer>
-
+  <a class="whatsapp-float" href="https://wa.me/34622442301" target="_blank" aria-label="WhatsApp">✆</a>
 </body>
 </html>
